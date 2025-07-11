@@ -61,6 +61,7 @@ io.on('connection', function(socket){
     child = exec("find -type f -name '*.jpg' | wc -l", function(error, stdout, stderr){
       numPics = parseInt(stdout)+1;
       // Turn off streamer, take photo, restart streamer
+      // TODO Careful here: raspistill is not gonna work anymore.
       var command = 'sudo killall mjpg_streamer ; raspistill -o cam' + numPics + '.jpg -n && sudo bash start_stream.sh';
         //console.log("command: ", command);
         child = exec(command, function(error, stdout, stderr){
