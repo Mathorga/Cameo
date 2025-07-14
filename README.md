@@ -3,30 +3,41 @@ Raspberry Pi headless camera.
 
 ## Install
 Run the following commands:
+
+### Update the system
 ```
 sudo apt update
 sudo apt upgrade
+```
+
+### Install mjpg-streamer
+```
+sudo apt install -y libjpeg62-turbo-dev
+sudo apt install -y cmake
+git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer
+cd ~/mjpg-streamer/mjpg-streamer-experimental
+make clean
+make all
+sudo mkdir /opt/mjpg-streamer
+sudo mv * /opt/mjpg-streamer
+cd
+```
+
+### Install web packages
+```
 sudo apt install -y apache2 nodejs npm
-```
-```
-git clone https://github.com/Mathorga/Cameo.git
-```
-or
-```
-git clone git@github.com:Mathorga/Cameo.git
-```
-```
-cd Cameo
 sudo npm install express
 sudo npm install socket.io
 sudo npm install ads1x15
 sudo npm install coffee-script
-```
-
-Install GPIO control (not needed):
-```
 sudo npm install pi-gpio
 sudo npm install pigpio
+```
+
+### Install Cameo
+```
+git clone https://github.com/Mathorga/Cameo.git ~/Cameo
+cd ~/Cameo
 ```
 
 ## Run the web app
