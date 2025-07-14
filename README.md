@@ -19,12 +19,19 @@ git clone git@github.com:Mathorga/Cameo.git
 cd Cameo
 sudo npm install express
 sudo npm install socket.io
+sudo npm install ads1x15
+sudo npm install coffee-script
 ```
 
 Install GPIO control (not needed):
 ```
 sudo npm install pi-gpio
 sudo npm install pigpio
+```
+
+## Run the web app
+```
+sudo node cameo_server.js
 ```
 
 ## Run at boot
