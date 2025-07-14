@@ -6,8 +6,17 @@ Run the following commands:
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install -y apache2 node npm
-cd Desktop/touchUI
+sudo apt install -y apache2 nodejs npm
+```
+```
+git clone https://github.com/Mathorga/Cameo.git
+```
+or
+```
+git clone git@github.com:Mathorga/Cameo.git
+```
+```
+cd Cameo
 sudo npm install express
 sudo npm install socket.io
 ```
