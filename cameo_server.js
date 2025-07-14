@@ -16,7 +16,7 @@ var adc = new ads1x15(1); // set to 0 for ads1015
 app.get(
   "/",
   function (req, res) {
-    res.sendFile("cameo_client.html");
+    res.sendFile(__dirname + "/cameo_client.html");
     console.log("HTML sent to client");
   }
 );
