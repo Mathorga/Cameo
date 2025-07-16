@@ -45,7 +45,8 @@ Example Flask code:
 ```
 
 Run the Flask app: Execute the Python script to start the server. 
-Access the stream: Open a web browser on another device and navigate to http://[IP_ADDRESS]:5000/video_feed (replace [IP_ADDRESS] with the Raspberry Pi's IP). 
-3. Using mjpg_streamer:
+Access the stream: Open a web browser on another device and navigate to http://[IP_ADDRESS]:5000/video_feed (replace [IP_ADDRESS] with the Raspberry Pi's IP).
+
+## 3. Using mjpg_streamer:
 Install mjpg_streamer: Compile and install mjpg_streamer from source.
 Start the stream: Run mjpg_streamer with the appropriate input and output plugins, specifying the port for the stream. 
