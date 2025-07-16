@@ -2,18 +2,34 @@
 Raspberry Pi headless camera.
 
 ## Install
+
+### Download and install Raspbian Stretch (2018-11-13)
+```TODO link```
+
+Before the first boot, make sure to enable SSH by adding a blank file called ssh (no file extension) to the "boot" folder of the microSD.
+
+Also add a file called "wpa_supplicant.conf" with the following content:
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+    ssid="wifi name"
+    psk="wifi password"
+}
+```
+This will allow you to automatically connect to a wifi network.
+
 Run the following commands:
 
 ### Update the system
 ```
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 ```
 
 ### Install mjpg-streamer
 ```
-sudo apt install -y libjpeg62-turbo-dev
-sudo apt install -y cmake
+sudo apt install -y libraspberrypi-dev libraspberrypi-bin libjpeg62-turbo-dev cmake
 git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer
 cd ~/mjpg-streamer/mjpg-streamer-experimental
 make clean
@@ -28,8 +44,8 @@ cd
 sudo apt install -y apache2 nodejs npm
 sudo npm install express
 sudo npm install socket.io
-sudo npm install ads1x15
-sudo npm install coffee-script
+-- sudo npm install ads1x15
+-- sudo npm install coffee-script
 sudo npm install pi-gpio
 sudo npm install pigpio
 ```
