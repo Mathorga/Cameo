@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raspberry Pi WebRTC Stream</title>
+</head>
+<body>
+  <h1>Live Camera Feed</h1>
+  <video id="video" autoplay playsinline controls></video>
+
+  <script>
+    const pc = new RTCPeerConnection();
+
+    pc.ontrack = (event) => {
+      document.getElementById('video').srcObject = event.streams[0];
+    };
+
+    async function negotiate() {
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      const res = await fetch('/offer', {
+        method: 'POST',
+        body: JSON.stringify(pc.localDescription),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const answer = await res.json();
+      await pc.setRemoteDescription(answer);
+    }
+
+    negotiate();
+  </script>
+</body>
+</html>
