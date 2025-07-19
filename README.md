@@ -20,7 +20,7 @@ https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimen
 ```
 sudo apt install -y gcc g++
 -- sudo apt install -y libraspberrypi-dev libraspberrypi-bin libjpeg8-dev cmake
-sudo apt install git cmake libjpeg8-dev
+sudo apt install -y git cmake libjpeg9-dev
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer
 cd ~/mjpg-streamer/mjpg-streamer-experimental
 make clean distclean
