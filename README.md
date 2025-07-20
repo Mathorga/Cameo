@@ -57,7 +57,7 @@ sudo touch /etc/rc.local
 Add the following commands to /etc/rc.local before "exit 0":
 
 ```
-cd /home/pi/Desktop/touchUI
+cd ~/Cameo
 sudo node cameo.js&
 cd
 ```
