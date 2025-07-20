@@ -11,12 +11,7 @@ sudo apt update -y
 sudo apt upgrade -y
 ```
 
-```
-rpicam-vid -t 0 --inline --listen -o tcp://[IP_ADDRESS]:[port]
-```
-
 ### Install mjpg-streamer
-https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/output_http/README.md
 ```
 sudo apt install -y gcc g++
 sudo apt install -y pkg-config
