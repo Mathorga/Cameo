@@ -19,7 +19,8 @@ rpicam-vid -t 0 --inline --listen -o tcp://[IP_ADDRESS]:[port]
 https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/output_http/README.md
 ```
 sudo apt install -y gcc g++
--- sudo apt install -y libraspberrypi-dev libraspberrypi-bin libjpeg8-dev cmake
+sudo apt install -y pkg-config
+sudo apt install -y libcamera-dev
 sudo apt install -y git cmake libjpeg9-dev
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer
 cd ~/mjpg-streamer/mjpg-streamer-experimental
