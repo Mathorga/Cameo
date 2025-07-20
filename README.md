@@ -58,7 +58,7 @@ Add the following commands to /etc/rc.local before "exit 0":
 
 ```
 cd ~/Cameo
-sudo node cameo.js&
+sudo node cameo_server.js &
 cd
 ```
 
