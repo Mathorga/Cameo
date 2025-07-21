@@ -50,7 +50,7 @@ io.on(
           numPics = parseInt(stdout) + 1;
           // Turn off streamer, take photo, restart streamer
           // TODO Careful here: raspistill is not gonna work anymore.
-          var command = "sudo killall mjpg_streamer ; raspistill -o cam" + numPics + ".jpg -n && sudo bash start_stream.sh";
+          var command = "sudo killall mjpg_streamer ; rpicam-jpeg -o cam" + numPics + ".jpg -n && sudo bash start_stream.sh";
           //console.log("command: ", command);
           child = exec(command, function (error, stdout, stderr) {
             io.emit("cam", 1);
