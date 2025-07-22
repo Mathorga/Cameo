@@ -33,13 +33,6 @@ io.on(
   function (socket) {
     console.log("A user connected");
 
-    // socket.on(
-    //   "light",
-    //   function (toggle) {
-    //     LED.digitalWrite(toggle);
-    //   }
-    // );
-
     socket.on(
       "cam",
       function (toggle) {
@@ -89,15 +82,6 @@ io.on(
             }
           }
         );
-        // if (!adc.busy) {
-        //   adc.readADCSingleEnded(0, "4096", "250", function (err, data) { //channel, gain, samples
-        //     if (!err) {
-        //       voltage = 2 * parseFloat(data) / 1000;
-        //       console.log("ADC: ", voltage);
-        //       io.emit("volt", voltage);
-        //     }
-        //   });
-        // }
       },
       5000
     );

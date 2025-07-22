@@ -168,23 +168,20 @@
 	setInterval(draw, 1000 / 30); // draw app at 30fps
 
 	function draw() {
-		socket.on('temp', function (msg) {
-			document.getElementById("temp").innerHTML = parseInt(msg) + '°C';
-			temperature = msg;
-		});
-
-		socket.on('volt', function (msg) {
-			voltage = msg;
-			if (voltage > 0) { // Don't show voltage without ADC
-				document.getElementById("volt").innerHTML = msg.toFixed(2) + 'V';
-			} else {
-				document.getElementById("volt").innerHTML = ' ';
+		socket.on(
+			"temp",
+			function (msg) {
+				document.getElementById("temp").innerHTML = parseInt(msg) + "°C";
+				temperature = msg;
 			}
-		});
+		);
 
-		socket.on('cam', function (msg) {
-			document.getElementById("stream").innerHTML = img;
-		});
+		socket.on(
+			"cam",
+			function (msg) {
+				document.getElementById("stream").innerHTML = img;
+			}
+		);
 	}
 
 </script>
@@ -198,7 +195,7 @@
 			// This script automatically picks the right IP for the stream 
 			// Thanks to wonx (github.com/wonx)
 			host = window.location.hostname;
-			img = '<img src="http://' + host + ':9000/?action=stream" style="height:100vh;"/>';
+			img = "<img src=\"http://" + host + ":9000/?action=stream\" style=\"height:100vh;\"/>";
 			//img = '<img src="stream.png" style="height:100vh;"/>';
 			document.getElementById("stream").innerHTML = img;
 			function takePicture() {
@@ -228,18 +225,10 @@
 
 	<div class="sidenav">
 		<center id="temp" style="padding:40%;">0°C</center>
-		<center id="volt" style="padding:40%;">0V</center>
 	</div>
 	<div class="sidenav" style="right:0;z-index: 2;">
 		<center class="off_button" type="button" onclick="shutdown()">OFF</center>
 		<center class="cam_button" type="button" onclick="takePicture()"></center>
-		<div>
-			<div class="switch">
-				<input id="cmn-toggle" css class="cmn-toggle cmn-toggle-round-flat" type="checkbox"
-					onclick="handleHeadlightClick(this)">
-				<label for="cmn-toggle">LIGHT</label>
-			</div>
-		</div>
 	</div>
 
 
