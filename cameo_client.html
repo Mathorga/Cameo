@@ -1,124 +1,152 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--This code is based on a project by Seb Lee-Delisle: http://seb.ly/2011/04/multi-touch-game-controller-in-javascripthtml5-for-ipad/-->
+<!doctype html>
+<html lang=en>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport"
-    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <title>Cameo</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-user-select: none;
-      user-select: none;
-    }
+	<meta charset=utf-8>
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<title>Cameo</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			-webkit-user-select: none;
+			user-select: none;
+		}
 
-    body,
-    html {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: #000;
-      font-family: 'Roboto', sans-serif;
-    }
+		body,
+		html {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background-color: #000;
+			font-family: 'Roboto', sans-serif;
+		}
 
-    #camera-view {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
+		#camera-view {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: 0;
+		}
 
-    #temp {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      font-size: 18px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 8px;
-      z-index: 2;
-    }
+		#temp {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			color: white;
+			font-size: 18px;
+			background: rgba(0, 0, 0, 0.5);
+			padding: 5px 10px;
+			border-radius: 8px;
+			z-index: 2;
+		}
 
-    #shutter-button {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 5px solid white;
-      background: transparent;
-      z-index: 2;
-      cursor: pointer;
-    }
+		#shutter-button {
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			border: 5px solid white;
+			background: transparent;
+			z-index: 2;
+			cursor: pointer;
+		}
 
-    #shutter-button:active {
-      background-color: #888;
-    }
+		#shutter-button:active {
+			background-color: #888;
+		}
 
-    #stream-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      z-index: 0;
-    }
-  </style>
+		#stream-container {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			z-index: 0;
+		}
+	</style>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
+<ul id="messages"></ul>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var temperature;
+	var socket = io(); // comment this out for better debugging
 
-<body>
-  <!-- Temperature Display -->
-  <div id="temp">0°C</div>
+	setInterval(draw, 1000 / 30); // draw app at 30fps
 
-  <!-- Camera Preview -->
-  <div id="stream-container">
-    <p id="stream"></p>
-  </div>
+	function draw() {
+		socket.on(
+			"temp",
+			function (msg) {
+				document.getElementById("temp").innerHTML = parseInt(msg) + "°C";
+				temperature = msg;
+			}
+		);
 
-  <!-- Shutter Button -->
-  <button id="shutter-button" onclick="takePicture()"></button>
+		socket.on(
+			"cam",
+			function (msg) {
+				document.getElementById("stream").innerHTML = img;
+			}
+		);
+	}
 
-  <!-- Scripts -->
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    let temperature;
-    const socket = io();
+</script>
 
-    const host = window.location.hostname;
-    const img = `<img id="camera-view" src="http://${host}:9000/?action=stream" alt="Camera Stream">`;
-    document.getElementById("stream").innerHTML = img;
+<body scroll="no" style="overflow: hidden">
+	<!-- Temperature Display -->
+	<div id="temp">0°C</div>
 
-    function takePicture() {
-      socket.emit("cam", 1);
-    }
+	<!-- Camera Preview -->
+	<div id="stream-container">
+		<p id="stream"></p>
+	</div>
 
-    function shutdown() {
-      if (confirm("This will shutdown the Pi.\nAre you sure?")) {
-        alert("Shutting down...\nPlease wait 20s before turning the power off.");
-        socket.emit("power", 1);
-      }
-    }
+	<!-- Shutter Button -->
+	<button id="shutter-button" onclick="takePicture()"></button>
 
-    function handleHeadlightClick(cb) {
-      const headlight = cb.checked ? 1 : 0;
-      socket.emit("light", headlight);
-    }
+	<!-- Scripts -->
+	<!-- <script src="/socket.io/socket.io.js"></script> -->
+	<script>
+		let temperature;
+		const socket = io();
 
-    // Update temperature from socket
-    socket.on("temp", function (msg) {
-      document.getElementById("temp").textContent = parseInt(msg) + "°C";
-      temperature = msg;
-    });
-  </script>
+		// This script automatically picks the right IP for the stream 
+		// Thanks to wonx (github.com/wonx)
+		host = window.location.hostname;
+		img = `<img id="camera-view" src="http://${host}:9000/?action=stream" alt="Camera Stream">`;
+		document.getElementById("stream").innerHTML = img;
+
+		// Capture image function.
+		function takePicture() {
+			socket.emit("cam", 1);
+		}
+
+		// Shutdown function.
+		function shutdown() {
+			if (confirm("This will shutdown the Pi.\nAre you sure?")) {
+				alert("Shutting down...\nPlease wait 20s before turning the power off.");
+				socket.emit("power", 1);
+			}
+		}
+
+		// Switch flashlight on or off.
+		function handleHeadlightClick(cb) {
+			const headlight = cb.checked ? 1 : 0;
+			socket.emit("light", headlight);
+		}
+
+	</script>
 </body>
 
 </html>
