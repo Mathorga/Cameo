@@ -117,7 +117,7 @@
     const socket = io();
 
     const host = window.location.hostname;
-    const img = `<img id="camera-view" src="http://${host}:9000/?action=stream" alt="Camera Stream">`;
+    img = `<img id="camera-view" src="http://${host}:9000/?action=stream" alt="Camera Stream">`;
     document.getElementById("stream").innerHTML = img;
 
     function takePicture() {
