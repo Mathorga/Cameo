@@ -38,10 +38,10 @@ io.on(
           // Turn off streamer, take photo, restart streamer
           var command = "sudo killall mjpg_streamer ; rpicam-jpeg -o cam" + numPics + ".jpg -n && sudo bash start_stream.sh";
           child = exec(command, function (error, stdout, stderr) {
+            console.log("Picture taken: cam" + numPics + ".jpg");
             io.emit("cam", 1);
           });
         });
-
       }
     );
 
