@@ -1,249 +1,124 @@
-<!--This code is based on a project by Seb Lee-Delisle: http://seb.ly/2011/04/multi-touch-game-controller-in-javascripthtml5-for-ipad/-->
-<!doctype html>
-<html lang=en>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset=utf-8>
-	<meta name="viewport"
-		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="mobile-web-app-capable" content="yes">
-	<title>Cameo</title>
-	<style type="text/css">
-		* {
-			-webkit-touch-callout: none;
-			/* prevent callout to copy image, etc when tap to hold */
-			-webkit-text-size-adjust: none;
-			/* prevent webkit from resizing text to fit */
-			/* make transparent link selection, adjust last value opacity 0 to 1.0 */
-			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-			-webkit-user-select: none;
-			/* prevent copy paste, to allow, change 'none' to 'text' */
-			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-		}
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Cameo</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      user-select: none;
+    }
 
-		body {
-			background-color: #000000;
-			margin: 0px;
-		}
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+    }
 
-		canvas {
-			display: block;
-			position: absolute;
-			z-index: 1;
-		}
+    #camera-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
 
-		.container {
-			width: auto;
-			text-align: center;
-			background-color: #ff0000;
-		}
+    #temp {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+      z-index: 2;
+    }
 
-		/* Headlight toggle switch (source: http://callmenick.com/post/css-toggle-switch-examples) */
-		.cmn-toggle {
-			position: absolute;
-			margin-left: -9999px;
-			visibility: hidden;
-		}
+    #shutter-button {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 5px solid white;
+      background: transparent;
+      z-index: 2;
+      cursor: pointer;
+    }
 
-		.cmn-toggle+label {
-			display: block;
-			position: relative;
-			cursor: pointer;
-			outline: none;
-			user-select: none;
-		}
+    #shutter-button:active {
+      background-color: #888;
+    }
 
-		input.cmn-toggle-round-flat+label {
-			background-color: transparent;
-			border-radius: 10%;
-			border: 2px;
-			border-style: solid;
-			border-color: white;
-			text-align: center;
-
-			padding-top: 20%;
-			padding-bottom: 20%;
-			font-size: 16px;
-			margin: 40% 7% 10%;
-			cursor: pointer;
-			transition: background 0.4s;
-		}
-
-		input.cmn-toggle-round-flat:checked+label {
-			background-color: gray;
-		}
-
-		.cam_button {
-			background-color: transparent;
-			border-radius: 100%;
-			border: 7px;
-			border-style: solid;
-			border-color: white;
-			text-align: center;
-
-			padding-top: 40%;
-			padding-bottom: 40%;
-			padding-left: 40%;
-			padding-right: 40%;
-			font-size: 16px;
-			margin: 50% 3% 4% 4%;
-			cursor: pointer;
-		}
-
-		.cam_button:active {
-			background-color: #808080;
-		}
-
-		.off_button {
-			background-color: transparent;
-			border-radius: 10%;
-			border: 2px;
-			border-style: solid;
-			border-color: white;
-			text-align: center;
-
-			padding-top: 20%;
-			padding-bottom: 20%;
-			font-size: 100%;
-			margin: 10% 7%;
-			cursor: pointer;
-		}
-
-		.off_button:active {
-			background-color: gray;
-		}
-
-		.light_button {
-			background-color: transparent;
-			border-radius: 10%;
-			border: 2px;
-			border-style: solid;
-			border-color: white;
-			text-align: center;
-
-			padding-top: 20%;
-			padding-bottom: 20%;
-			font-size: 16px;
-			margin: 40% 7% 10%;
-			cursor: pointer;
-		}
-
-		.light_button:checked {
-			background-color: #b1b;
-		}
-
-		.sidenav {
-			color: #fff;
-			height: 100%;
-			width: 13%;
-			position: fixed;
-			z-index: 0;
-			top: 0px;
-			background-color: #111;
-			overflow-x: hidden;
-			padding-top: 20px;
-			font-family: 'Roboto', sans-serif;
-		}
-
-
-
-
-
-
-
-		p#stream {
-			position: relative;
-			top: -15px;
-		}
-	</style>
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
+    #stream-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 0;
+    }
+  </style>
 </head>
-<ul id="messages"></ul>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-	var temperature;
-	var socket = io(); // comment this out for better debugging
 
-	setInterval(draw, 1000 / 30); // draw app at 30fps
+<body>
+  <!-- Temperature Display -->
+  <div id="temp">0°C</div>
 
-	function draw() {
-		socket.on(
-			"temp",
-			function (msg) {
-				document.getElementById("temp").innerHTML = parseInt(msg) + "°C";
-				temperature = msg;
-			}
-		);
+  <!-- Camera Preview -->
+  <div id="stream-container">
+    <p id="stream"></p>
+  </div>
 
-		socket.on(
-			"cam",
-			function (msg) {
-				document.getElementById("stream").innerHTML = img;
-			}
-		);
-	}
+  <!-- Shutter Button -->
+  <button id="shutter-button" onclick="takePicture()"></button>
 
-</script>
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    let temperature;
+    const socket = io();
 
-<body scroll="no" style="overflow: hidden">
-	<center>
+    const host = window.location.hostname;
+    const img = `<img id="camera-view" src="http://${host}:9000/?action=stream" alt="Camera Stream">`;
+    document.getElementById("stream").innerHTML = img;
 
-		<p id="stream"></p>
+    function takePicture() {
+      socket.emit("cam", 1);
+    }
 
-		<script>
-			// This script automatically picks the right IP for the stream 
-			// Thanks to wonx (github.com/wonx)
-			host = window.location.hostname;
-			img = "<img src=\"http://" + host + ":9000/?action=stream\" style=\"height:100vh;\"/>";
-			//img = '<img src="stream.png" style="height:100vh;"/>';
-			document.getElementById("stream").innerHTML = img;
-			function takePicture() {
-				socket.emit("cam", 1);
-			}
-			function shutdown() {
-				if (confirm("This will shutdown the Pi.\nAre you sure?")) {
-					alert("Shutting down...\nPlease wait 20s before turning the power off.");
-					socket.emit("power", 1);
-				}
-			}
-			// Handle headlight button
-			function handleHeadlightClick(cb) {
-				if (cb.checked) {
-					// Turn on headlight
-					headlight = 1;
-				} else {
-					// Turn off headlight
-					headlight = 0;
-				}
-				socket.emit("light", headlight);
-			}
+    function shutdown() {
+      if (confirm("This will shutdown the Pi.\nAre you sure?")) {
+        alert("Shutting down...\nPlease wait 20s before turning the power off.");
+        socket.emit("power", 1);
+      }
+    }
 
-		</script>
+    function handleHeadlightClick(cb) {
+      const headlight = cb.checked ? 1 : 0;
+      socket.emit("light", headlight);
+    }
 
-	</center>
-
-	<!-- Left sidenav. -->
-	<div class="sidenav">
-		<center id="temp" style="padding:40%;">0°C</center>
-	</div>
-
-	<!-- Right sidenav -->
-	<div class="sidenav" style="right:0;z-index: 2;">
-		<!-- Shutdown button. -->
-		<!-- <center class="off_button" type="button" onclick="shutdown()">OFF</center> -->
-
-		<!-- Shutter button. -->
-		<center class="cam_button" type="button" onclick="takePicture()"></center>
-
-		<!-- Flashlight button. -->
-		<!-- <div>
-			<div class="switch">
-				<input id="cmn-toggle"css class="cmn-toggle cmn-toggle-round-flat" type="checkbox" onclick="handleHeadlightClick(this)">
-				<label for="cmn-toggle">LIGHT</label>
-			</div>
-		</div> -->
-	</div>
+    // Update temperature from socket
+    socket.on("temp", function (msg) {
+      document.getElementById("temp").textContent = parseInt(msg) + "°C";
+      temperature = msg;
+    });
+  </script>
 </body>
 
 </html>
