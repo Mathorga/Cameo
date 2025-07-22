@@ -3,9 +3,9 @@ Description=Cameo service
 After=multi-user.target
 
 [Service]
-Type=idle
+Type=simple
 User=pi
-ExecStart=/home/pi/Cameo/start_stream.sh ; sudo /usr/bin/node /home/pi/Cameo/cameo_server.js &
+ExecStart=sudo /home/pi/Cameo/start_stream.sh ; sudo /usr/bin/node /home/pi/Cameo/cameo_server.js &
 Restart=always
 RestartSec=60
 
