@@ -42,7 +42,7 @@ git clone https://github.com/Mathorga/Cameo.git ~/Cameo
 cd ~/Cameo
 ```
 
-## Run the web app
+## Run the web app once
 ```
 chmod u+x start_stream.sh
 sudo start_stream.sh
@@ -85,3 +85,6 @@ sudo systemctl status rc-local.service
 sudo systemctl enable rc-local.service
 sudo systemctl start rc-local.service
 ```
+
+## Setup private hotspot
+https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/
