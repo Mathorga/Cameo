@@ -75,8 +75,8 @@ exit 0
 ```
 line at the end.
 	
-	### Make the file executable
-	```
+### Make the file executable
+```
 sudo chmod u+x /etc/rc.local
 ```
 
@@ -90,7 +90,7 @@ sudo systemctl start rc-local.service
 Copy the provided service file to the services directory
 ```
 sudo cp ~/Cameo/cameo.service /etc/systemd/system/
-	```
+```
 
 Make the copied service readable by all
 ```
