@@ -3,7 +3,7 @@ var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var exec = require("child_process").exec, child;
 var port = process.env.PORT || 3000;
-var ads1x15 = require("node-ads1x15");
+// var ads1x15 = require("node-ads1x15");
 // var adc = new ads1x15(1); // set to 0 for ads1015
 
 // var Gpio = require("pigpio").Gpio,
