@@ -89,29 +89,6 @@
 
   <!-- Scripts -->
   <script src="/socket.io/socket.io.js"></script>
-  <!-- <script>
-    var temperature;
-    var socket = io(); // comment this out for better debugging
-
-    setInterval(draw, 1000 / 30); // draw app at 30fps
-
-    function draw() {
-      socket.on(
-        "temp",
-        function (msg) {
-          document.getElementById("temp").innerHTML = parseInt(msg) + "°C";
-          temperature = msg;
-        }
-      );
-
-      socket.on(
-        "cam",
-        function (msg) {
-          document.getElementById("stream").innerHTML = img;
-        }
-      );
-    }
-  </script> -->
   <script>
     let temperature;
     const socket = io();
@@ -142,6 +119,7 @@
       temperature = msg;
     });
 
+    // Update camera stream from socket.
     socket.on(
       "cam",
       function (msg) {
