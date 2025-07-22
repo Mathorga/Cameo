@@ -216,25 +216,34 @@
 					// Turn off headlight
 					headlight = 0;
 				}
-				socket.emit('light', headlight);
+				socket.emit("light", headlight);
 			}
 
 		</script>
 
 	</center>
 
+	<!-- Left sidenav. -->
 	<div class="sidenav">
 		<center id="temp" style="padding:40%;">0°C</center>
 	</div>
+
+	<!-- Right sidenav -->
 	<div class="sidenav" style="right:0;z-index: 2;">
-		<center class="off_button" type="button" onclick="shutdown()">OFF</center>
+		<!-- Shutdown button. -->
+		<!-- <center class="off_button" type="button" onclick="shutdown()">OFF</center> -->
+
+		<!-- Shutter button. -->
 		<center class="cam_button" type="button" onclick="takePicture()"></center>
+
+		<!-- Flashlight button. -->
+		<!-- <div>
+			<div class="switch">
+				<input id="cmn-toggle"css class="cmn-toggle cmn-toggle-round-flat" type="checkbox" onclick="handleHeadlightClick(this)">
+				<label for="cmn-toggle">LIGHT</label>
+			</div>
+		</div> -->
 	</div>
-
-	<div style="position:fixed;bottom:40vh;right:0;padding:25px">
-
-	</div>
-
 </body>
 
 </html>
