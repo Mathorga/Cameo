@@ -31,7 +31,6 @@ cd
 sudo apt install -y apache2 nodejs npm
 sudo npm install express
 sudo npm install socket.io
--- sudo npm install node-ads1x15
 sudo npm install coffee-script
 sudo npm install pi-gpio
 sudo npm install pigpio
