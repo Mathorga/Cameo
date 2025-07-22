@@ -45,6 +45,8 @@ cd ~/Cameo
 
 ## Run the web app
 ```
+chmod u+x start_stream.sh
+sudo ./start_stream.sh
 sudo node cameo_server.js
 ```
 

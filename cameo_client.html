@@ -598,7 +598,7 @@
 			//img = '<img src="stream.png" style="height:100vh;"/>';
 			document.getElementById("stream").innerHTML = img;
 			function takePicture() {
-				socket.emit('cam', 1);
+				socket.emit("cam", 1);
 			}
 			function shutdown() {
 				if (confirm("This will shutdown the Pi.\nAre you sure?")) {
