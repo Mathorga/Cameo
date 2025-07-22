@@ -100,7 +100,7 @@ sudo chmod 644 /etc/systemd/system/cameo.service
 Enable the service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable name-of-your-service.service
+sudo systemctl enable cameo.service
 sudo reboot
 ```
 
