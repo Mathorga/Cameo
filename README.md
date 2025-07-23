@@ -1,9 +1,9 @@
 # Cameo
 Raspberry Pi headless camera.
-	
-	## Install
-	
-	Run the following commands:
+
+## Install
+
+Run the following commands (tested on Raspberry pi OS Bookworm 32-bit on RPi zero W and zero 2W):
 
 ### Update the system
 ```
@@ -14,7 +14,7 @@ sudo apt upgrade -y
 ### Install mjpg-streamer
 ```
 sudo apt install -y gcc g++
-	sudo apt install -y pkg-config
+sudo apt install -y pkg-config
 sudo apt install -y libcamera-dev
 sudo apt install -y git cmake libjpeg9-dev
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer
