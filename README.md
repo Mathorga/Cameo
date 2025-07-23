@@ -49,43 +49,6 @@ sudo start_stream.sh
 sudo node cameo_server.js
 ```
 
-## Run at boot (old)
-Make sure the ```/etc/rc.local``` file exists. If it does not exist, create it with the command:
-```
-sudo touch /etc/rc.local
-```
-
-Add the following commands to /etc/rc.local before "exit 0":
-
-```
-cd ~/Cameo
-sudo chmod +x start_stream.sh
-sudo start_stream.sh
-sudo node cameo_server.js &
-cd
-```
-
-If you just created the ```rc.local``` file, then also add the
-```
-#!/bin/sh -e
-```
-line at the beginning of the file and the
-```
-exit 0
-```
-line at the end.
-	
-### Make the file executable
-```
-sudo chmod u+x /etc/rc.local
-```
-
-```
-sudo systemctl status rc-local.service
-sudo systemctl enable rc-local.service
-sudo systemctl start rc-local.service
-```
-
 ## Run at boot
 Copy the provided service file to the services directory
 ```
