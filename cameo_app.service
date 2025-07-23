@@ -1,7 +1,7 @@
 [Unit]
 Description=Cameo app service
 After=cameo-stream.service
-Requires=cameo-stream.service
+Requires=cameo_stream.service
 
 [Service]
 Type=simple
