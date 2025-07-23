@@ -44,7 +44,7 @@ cd ~/Cameo
 
 ## Run the web app once
 ```
-chmod u+x start_stream.sh
+chmod +x start_stream.sh
 sudo start_stream.sh
 sudo node cameo_server.js
 ```
@@ -59,7 +59,7 @@ Add the following commands to /etc/rc.local before "exit 0":
 
 ```
 cd ~/Cameo
-sudo chmod u+x start_stream.sh
+sudo chmod +x start_stream.sh
 sudo start_stream.sh
 sudo node cameo_server.js &
 cd
@@ -89,31 +89,33 @@ sudo systemctl start rc-local.service
 ## Run at boot
 Copy the provided service file to the services directory
 ```
-sudo cp ~/Cameo/cameo.service /etc/systemd/system/
+sudo cp ~/Cameo/cameo_stream.service /etc/systemd/system/
+sudo cp ~/Cameo/cameo_app.service /etc/systemd/system/
 ```
 
 Make the copied service readable by all
 ```
-sudo chmod 644 /etc/systemd/system/cameo.service
+sudo chmod 644 /etc/systemd/system/cameo_stream.service
+sudo chmod 644 /etc/systemd/system/cameo_app.service
 ```
 
 Enable the service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable cameo.service
+sudo systemctl enable cameo_app.service
 sudo reboot
 ```
 
 If you ever need to stop, start or restart the service:
 ```
-sudo systemctl stop cameo.service
-sudo systemctl start cameo.service
-sudo systemctl restart cameo.service
+sudo systemctl stop cameo_app.service
+sudo systemctl start cameo_app.service
+sudo systemctl restart cameo_app.service
 ```
 
 If you ever need to prevent it from starting at boot:
 ```
-sudo systemctl disable cameo.service
+sudo systemctl disable cameo_app.service
 ```
 
 ## Setup private hotspot

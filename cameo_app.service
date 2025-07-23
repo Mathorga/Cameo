@@ -1,11 +1,12 @@
 [Unit]
-Description=Cameo service
-After=multi-user.target
+Description=Cameo app service
+After=cameo-stream.service
+Requires=cameo-stream.service
 
 [Service]
 Type=simple
 User=pi
-ExecStart=/home/pi/Cameo/start_server.sh
+ExecStart=/usr/bin/node /home/pi/Cameo/cameo_server.js
 Restart=always
 RestartSec=60
 StandardOutput=journal

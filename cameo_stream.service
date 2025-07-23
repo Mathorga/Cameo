@@ -1,0 +1,15 @@
+[Unit]
+Description=Cameo MJPG stream service
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_libcamera.so -r 640x480 -fps 30" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www"
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
