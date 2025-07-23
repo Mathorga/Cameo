@@ -5,8 +5,7 @@ After=multi-user.target
 [Service]
 Type=simple
 User=pi
-ExecStartPre=/home/pi/Cameo/start_stream.sh
-ExecStart=/usr/bin/node /home/pi/Cameo/cameo_server.js &
+ExecStart=/home/pi/Cameo/start_server.sh
 Restart=always
 RestartSec=60
 
