@@ -81,5 +81,14 @@ If you ever need to prevent it from starting at boot:
 sudo systemctl disable cameo_app.service
 ```
 
+If you ever need to monitor the output of one of the two Cameo services:
+```
+journalctl -u cameo_app.service
+```
+or
+```
+journalctl -u cameo_stream.service
+```
+
 ## Setup private hotspot
 https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/

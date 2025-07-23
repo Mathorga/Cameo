@@ -37,7 +37,7 @@ io.on(
           numPics = parseInt(stdout) + 1;
           // Turn off streamer, take photo, restart streamer
           // const command = "sudo killall mjpg_streamer ; rpicam-jpeg -t 2000 -o cam" + numPics + ".jpg -n && sudo bash start_stream.sh";
-          const command = "sudo systemctl stop cameo_stream.service ; rpicam-jpeg -t 2000 -o cam" + numPics + ".jpg -n && sudo systemctl start cameo_stream.service";
+          const command = "rpicam-jpeg -t 2000 -o cam" + numPics + ".jpg -n";
           child = exec(command, function (error, stdout, stderr) {
             console.log("Picture taken: cam" + numPics + ".jpg");
             io.emit("cam", 1);
