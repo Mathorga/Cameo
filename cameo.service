@@ -5,9 +5,11 @@ After=multi-user.target
 [Service]
 Type=simple
 User=pi
-ExecStart=/home/pi/Cameo/start_server.sh
+ExecStart=/home/pi/Cameo/start_stream.sh
 Restart=always
 RestartSec=60
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
