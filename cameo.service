@@ -1,0 +1,16 @@
+[Unit]
+Description=Cameo MJPG stream service
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+Environment=LD_LIBRARY_PATH=/opt/mjpg-streamer/
+ExecStart=/home/pi/Cameo/cameo_server.js
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
