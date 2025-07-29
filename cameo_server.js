@@ -33,7 +33,7 @@ io.on(
         var numPics = 0;
         console.log("Taking a picture..");
         //Count jpg files in directory to prevent overwriting
-        child = exec("find -type f -name \"*.jpg\" | wc -l", function (error, stdout, stderr) {
+        child = exec("find ~/Cameo/ -type f -name \"*.jpg\" | wc -l", function (error, stdout, stderr) {
           numPics = parseInt(stdout) + 1;
           // Turn off streamer, take photo, restart streamer
           const command = "killall mjpg_streamer ; /usr/bin/rpicam-jpeg -t 2000 -o ~/Cameo/cam" + numPics + ".jpg -n ; sudo bash ~/Cameo/start_stream.sh";
