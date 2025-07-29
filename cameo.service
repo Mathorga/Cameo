@@ -6,7 +6,7 @@ After=multi-user.target
 Type=simple
 User=pi
 Environment=LD_LIBRARY_PATH=/opt/mjpg-streamer/
-ExecStart=/home/pi/Cameo/cameo_server.js
+ExecStart=/home/pi/Cameo/start_server.sh
 Restart=always
 RestartSec=5
 StandardOutput=journal
