@@ -50,44 +50,28 @@ sudo node cameo_server.js
 ```
 
 ## Run at boot
-Copy the provided service file to the services directory
+In order to make the app run at boot you can run the following commands
 ```
-sudo cp ~/Cameo/cameo_stream.service /etc/systemd/system/
-sudo cp ~/Cameo/cameo_app.service /etc/systemd/system/
+sudo chmod +x ~/Cameo/install_service.sh
+./install_service.sh
 ```
-
-Make the copied service readable by all
-```
-sudo chmod 644 /etc/systemd/system/cameo_stream.service
-sudo chmod 644 /etc/systemd/system/cameo_app.service
-```
-
-Enable the service
-```
-sudo systemctl daemon-reload
-sudo systemctl enable cameo_app.service
-sudo reboot
-```
+This script will install a systemd service which runs the server at boot time and then it will reboot the system, so be ready to be logged off.
 
 If you ever need to stop, start or restart the service:
 ```
-sudo systemctl stop cameo_app.service
-sudo systemctl start cameo_app.service
-sudo systemctl restart cameo_app.service
+sudo systemctl stop cameo.service
+sudo systemctl start cameo.service
+sudo systemctl restart cameo.service
 ```
 
 If you ever need to prevent it from starting at boot:
 ```
-sudo systemctl disable cameo_app.service
+sudo systemctl disable cameo.service
 ```
 
-If you ever need to monitor the output of one of the two Cameo services:
+If you ever need to monitor the output of one of the service:
 ```
-journalctl -u cameo_app.service
-```
-or
-```
-journalctl -u cameo_stream.service
+journalctl -u cameo.service
 ```
 
 ## Setup private hotspot
