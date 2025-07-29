@@ -55,7 +55,7 @@ git clone https://github.com/Mathorga/Cameo.git ~/Cameo
 cd ~/Cameo
 ```
 
-#### Run the web app once (optional)
+#### Run the web app once (if you want to test it before going on)
 ```
 chmod +x start_stream.sh
 sudo start_stream.sh
