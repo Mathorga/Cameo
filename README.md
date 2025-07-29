@@ -8,6 +8,7 @@ Tested on Raspberry pi OS Bookworm 32-bit on RPi zero W and zero 2W.
 ### Option 1: Clone Cameo and run the setup script.
 The script will take care of everything for you, you'll just need to prompt as requested along the way.
 ```
+sudo apt install git
 git clone https://github.com/Mathorga/Cameo.git ~/Cameo
 cd ~/Cameo
 ```
