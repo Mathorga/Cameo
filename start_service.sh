@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Stop any running instances of the service.
 sudo systemctl stop cameo.service
 
@@ -21,4 +23,4 @@ sudo chmod 644 /etc/systemd/system/cameo.service
 sudo systemctl daemon-reload
 
 # Start the new server.
-sudo systemctl start cameo.server
+sudo systemctl start cameo.service
