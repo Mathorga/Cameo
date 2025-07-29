@@ -11,6 +11,7 @@ The script will take care of everything for you, you'll just need to prompt as r
 sudo apt install -y git
 git clone https://github.com/Mathorga/Cameo.git ~/Cameo
 cd ~/Cameo
+sudo chmod +x setup.sh
 ```
 
 ### Option 2: DIY
