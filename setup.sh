@@ -27,10 +27,6 @@ sudo npm install coffee-script
 sudo npm install pi-gpio
 sudo npm install pigpio
 
-# Install Cameo.
-git clone https://github.com/Mathorga/Cameo.git ~/Cameo
-cd ~/Cameo
-
 # Setup service to run at boot.
 sudo chmod +x ~/Cameo/install_service.sh
 ./install_service.sh
