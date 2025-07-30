@@ -1,17 +1,30 @@
 # Cameo
 Raspberry Pi headless camera.
 
+Tested on Raspberry pi OS Bookworm 32-bit on RPi zero W and zero 2W.
+
 ## Install
 
-Run the following commands (tested on Raspberry pi OS Bookworm 32-bit on RPi zero W and zero 2W):
+### Option 1: Clone Cameo and run the setup script.
+The script will take care of everything for you, you'll just need to prompt as requested along the way.
+```
+sudo apt install -y git
+git clone https://github.com/Mathorga/Cameo.git ~/Cameo
+cd ~/Cameo
+sudo chmod +x setup.sh
+```
 
-### Update the system
+### Option 2: DIY
+
+Run the following commands
+
+#### Update the system
 ```
 sudo apt update -y
 sudo apt upgrade -y
 ```
 
-### Install mjpg-streamer
+#### Install mjpg-streamer
 ```
 sudo apt install -y gcc g++
 sudo apt install -y pkg-config
@@ -26,7 +39,7 @@ sudo mv * /opt/mjpg-streamer
 cd
 ```
 
-### Install web packages
+#### Install web packages
 ```
 sudo apt install -y apache2 nodejs npm
 sudo npm install express
@@ -36,20 +49,20 @@ sudo npm install pi-gpio
 sudo npm install pigpio
 ```
 
-### Install Cameo
+#### Install Cameo
 ```
 git clone https://github.com/Mathorga/Cameo.git ~/Cameo
 cd ~/Cameo
 ```
 
-## Run the web app once
+#### Run the web app once (if you want to test it before going on)
 ```
 chmod +x start_stream.sh
 sudo start_stream.sh
 sudo node cameo_server.js
 ```
 
-## Run at boot
+#### Run at boot
 In order to make the app run at boot you can run the following commands
 ```
 sudo chmod +x ~/Cameo/install_service.sh
@@ -74,5 +87,5 @@ If you ever need to monitor the output of one of the service:
 journalctl -u cameo.service
 ```
 
-## Setup private hotspot
+#### Setup private hotspot
 https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/
