@@ -29,4 +29,4 @@ sudo npm install pigpio
 
 # Setup service to run at boot.
 sudo chmod +x ~/Cameo/install_service.sh
-./install_service.sh
+~/Cameo/install_service.sh
