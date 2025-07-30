@@ -65,8 +65,8 @@ sudo node cameo_server.js
 #### Run at boot
 In order to make the app run at boot you can run the following commands
 ```
-sudo chmod +x ~/Cameo/install_service.sh
-./install_service.sh
+sudo chmod +x ~/Cameo/install_services.sh
+./install_services.sh
 ```
 This script will install a systemd service which runs the server at boot time and then it will reboot the system, so be ready to be logged off.
 
@@ -88,4 +88,9 @@ journalctl -u cameo.service
 ```
 
 #### Setup private hotspot
-https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/
+Create a wifi hotspot using the builtin controller (wlan0).
+
+The network will be named "cameo" and its password will be "raspberry"
+```
+sudo nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
+```

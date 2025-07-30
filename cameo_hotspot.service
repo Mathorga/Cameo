@@ -1,11 +1,11 @@
 [Unit]
-Description=Cameo main service
+Description=Cameo hotspot service
 After=multi-user.target
 
 [Service]
 Type=simple
 User=pi
-ExecStart=/home/pi/Cameo/start_server.sh
+ExecStart=/usr/bin/nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
 Restart=always
 RestartSec=5
 StandardOutput=journal

@@ -28,5 +28,5 @@ sudo npm install pi-gpio
 sudo npm install pigpio
 
 # Setup service to run at boot.
-sudo chmod +x ~/Cameo/install_service.sh
-~/Cameo/install_service.sh
+sudo chmod +x ~/Cameo/install_services.sh
+~/Cameo/install_services.sh
