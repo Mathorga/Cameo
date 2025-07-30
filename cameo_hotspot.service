@@ -1,13 +1,12 @@
 [Unit]
 Description=Cameo hotspot service
 After=multi-user.target
+Requires=NetworkManager.service
 
 [Service]
-Type=simple
-User=pi
+Type=oneshot
 ExecStart=/usr/bin/nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
-Restart=always
-RestartSec=5
+RemainAfterExit=true
 StandardOutput=journal
 StandardError=journal
 
