@@ -9,8 +9,8 @@ sudo systemctl disable cameo.service
 sudo systemctl disable cameo_hotspot.service
 
 # Make all necessary scripts executable.
-sudo chmod +x start_stream.sh
-sudo chmod +x start_server.sh
+sudo chmod +x ~/Cameo/start_stream.sh
+sudo chmod +x ~/Cameo/start_server.sh
 
 # Remove any preexisting service files.
 sudo rm /etc/systemd/system/cameo.service

@@ -7,6 +7,8 @@ Requires=NetworkManager.service
 Type=oneshot
 ExecStart=/usr/bin/nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
 RemainAfterExit=true
+Restart=on-failure
+RestartSec=5
 StandardOutput=journal
 StandardError=journal
 
