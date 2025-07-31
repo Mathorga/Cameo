@@ -9,6 +9,7 @@ sudo systemctl disable cameo.service
 sudo systemctl disable cameo_hotspot.service
 
 # Make all necessary scripts executable.
+sudo chmod +x ~/Cameo/snap_picture.sh
 sudo chmod +x ~/Cameo/start_stream.sh
 sudo chmod +x ~/Cameo/start_server.sh
 
