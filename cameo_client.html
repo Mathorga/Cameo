@@ -114,10 +114,13 @@
     }
 
     // Update temperature from socket
-    socket.on("temp", function (msg) {
-      document.getElementById("temp").textContent = parseInt(msg) + "°C";
-      temperature = msg;
-    });
+    socket.on(
+      "temp",
+      function (msg) {
+        document.getElementById("temp").textContent = parseInt(msg) + "°C";
+        temperature = msg;
+      }
+    );
 
     // Update camera stream from socket.
     socket.on(
