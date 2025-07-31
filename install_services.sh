@@ -29,7 +29,7 @@ sudo systemctl daemon-reload
 
 # Enable the new services to start at boot time.
 sudo systemctl enable cameo.service
-sudo systemctl enable cameo_hotspot.service
+# sudo systemctl enable cameo_hotspot.service
 
 # Reboot the system.
 sudo reboot
