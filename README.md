@@ -94,3 +94,8 @@ The network will be named "cameo" and its password will be "raspberry"
 ```
 sudo nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
 ```
+
+If you ever need to stop the hotspot
+```
+sudo nmcli connection down Hotspot
+```
