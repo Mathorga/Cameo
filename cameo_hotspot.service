@@ -5,7 +5,7 @@ Requires=NetworkManager.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
+ExecStart=/home/pi/Cameo/start_hotspot.sh
 RemainAfterExit=true
 Restart=on-failure
 RestartSec=5

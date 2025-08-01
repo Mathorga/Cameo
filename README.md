@@ -92,7 +92,8 @@ Create a wifi hotspot using the builtin controller (wlan0).
 
 The network will be named "cameo" and its password will be "raspberry"
 ```
-sudo nmcli device wifi hotspot ssid cameo password raspberry ifname wlan0
+chmod +x start_hotspot.sh
+sudo start_hotspot.sh
 ```
 
 If you ever need to stop the hotspot

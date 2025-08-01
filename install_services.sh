@@ -12,6 +12,7 @@ sudo systemctl disable cameo_hotspot.service
 sudo chmod +x ~/Cameo/snap_picture.sh
 sudo chmod +x ~/Cameo/start_stream.sh
 sudo chmod +x ~/Cameo/start_server.sh
+sudo chmod +x ~/Cameo/start_hotspot.sh
 
 # Remove any preexisting service files.
 sudo rm /etc/systemd/system/cameo.service
@@ -30,7 +31,7 @@ sudo systemctl daemon-reload
 
 # Enable the new services to start at boot time.
 sudo systemctl enable cameo.service
-# sudo systemctl enable cameo_hotspot.service
+sudo systemctl enable cameo_hotspot.service
 
 # Reboot the system.
 sudo reboot
