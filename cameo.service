@@ -1,11 +1,12 @@
 [Unit]
 Description=Cameo main service
-After=multi-user.target
+After=multi-user.target network.target local-fs.target
 Requires=NetworkManager.service
 
 [Service]
 Type=simple
 User=pi
+ExecStartPre=/bin/sleep 10
 ExecStart=/home/pi/Cameo/start_server.sh
 Restart=always
 RestartSec=5
