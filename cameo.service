@@ -1,6 +1,7 @@
 [Unit]
 Description=Cameo main service
 After=multi-user.target
+Requires=NetworkManager.service
 
 [Service]
 Type=simple
