@@ -6,7 +6,7 @@ Requires=NetworkManager.service
 [Service]
 Type=simple
 User=pi
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/bash -c 'until libcamera-hello -t 1 >/dev/null 2>&1; do echo "Waiting for camera..."; sleep 2; done'
 ExecStart=/home/pi/Cameo/start_server.sh
 Restart=always
 RestartSec=5
