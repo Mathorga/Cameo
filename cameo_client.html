@@ -125,8 +125,17 @@
     // Update camera stream from socket.
     socket.on(
       "cam",
-      function (msg) {
+      function (filename) {
+        // Restore the mjpg stream.
         document.getElementById("stream").innerHTML = img;
+
+        // Trigger file download
+        const link = document.createElement("a");
+        link.href = "/download/" + filename;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     );
   </script>

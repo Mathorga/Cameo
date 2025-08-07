@@ -67,12 +67,13 @@ io.on(
         //Count jpg files in directory to prevent overwriting
         child = exec("/usr/bin/find ~/Cameo/ -type f -name \"*.jpg\" | wc -l", function (error, stdout, stderr) {
           numPics = parseInt(stdout) + 1;
+          const picFileName = "cam" + numPics + ".jpg"
           // Turn off streamer, take photo, restart streamer
-          const command = "~/Cameo/snap_picture.sh ~/Cameo/cam" + numPics + ".jpg"
+          const command = "~/Cameo/snap_picture.sh ~/Cameo/" + picFileName
           // const command = "/usr/bin/killall mjpg_streamer ; /usr/bin/rpicam-jpeg -n -t 50 -o ~/Cameo/cam" + numPics + ".jpg; sudo bash ~/Cameo/start_stream.sh";
           child = exec(command, function (error, stdout, stderr) {
             console.log("Picture taken: cam" + numPics + ".jpg");
-            io.emit("cam", 1);
+            io.emit("cam", picFileName);
           });
         });
       }
