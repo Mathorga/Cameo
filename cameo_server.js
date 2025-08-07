@@ -1,6 +1,7 @@
-var app = require("express")();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
+const path = require("path");
+const app = require("express")();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 var exec = require("child_process").exec, child;
 var port = process.env.PORT || 3000;
 // var ads1x15 = require("node-ads1x15");
@@ -12,6 +13,36 @@ var port = process.env.PORT || 3000;
 //   B1 = new Gpio( 4, {mode: Gpio.OUTPUT}),
 //   B2 = new Gpio(18, {mode: Gpio.OUTPUT});
 //   LED = new Gpio(22, {mode: Gpio.OUTPUT});
+
+// Resolve the home directory.
+const homeDir = require("os").homedir();
+const photosDir = path.join(homeDir, "Cameo");
+
+// Serve the Cameo folder statically (for browser access).
+app.use(
+  "/photos",
+  express.static(photosDir)
+);
+
+app.get(
+  "/download/:filename",
+  function (req, res) {
+    const filename = req.params.filename;
+    const filePath = path.join(photosDir, filename);
+
+    // Make sure only image files are requested.
+    if (!/^[\w\-]+\.(jpg|jpeg|png)$/i.test(filename)) {
+      return res.status(400).send("Invalid filename");
+    }
+
+    res.download(filePath, function (err) {
+      if (err) {
+        console.error("Download error:", err);
+        res.status(404).send("File not found");
+      }
+    });
+}
+);
 
 app.get(
   "/",
