@@ -1,7 +1,7 @@
 # Cameo
 Raspberry Pi headless camera.
 
-Tested on Raspberry pi OS Bookworm 32-bit on RPi zero W and zero 2 W.
+Tested on Raspberry pi OS Bookworm (32-bit and 64-bit) on RPi zero W and zero 2 W.
 
 ## Install
 
