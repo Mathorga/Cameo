@@ -1,8 +1,9 @@
 const path = require("path");
-const app = require("express")();
+const express = require("express");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 var exec = require("child_process").exec, child;
+const app = express();
 var port = process.env.PORT || 3000;
 // var ads1x15 = require("node-ads1x15");
 // var adc = new ads1x15(1); // set to 0 for ads1015
