@@ -90,7 +90,7 @@ journalctl -u cameo.service
 #### Setup private hotspot
 Create a wifi hotspot using the builtin controller (wlan0).
 
-The network will be named "cameo" and its password will be "raspberry"
+The network will be named "cameo" and its password will be "\_oemac\_"
 ```
 chmod +x start_hotspot.sh
 sudo start_hotspot.sh
