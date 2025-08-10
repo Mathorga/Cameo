@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Update the system.
-sudo apt update -y
-sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade
 
 # Install mjpg-streamer dependencies.
 sudo apt install -y gcc g++
