@@ -90,7 +90,7 @@ journalctl -u cameo.service
 #### Setup private hotspot
 Create a wifi hotspot using the builtin controller (wlan0).
 
-The network will be named "cameo" and its password will be "\<oemac\>"
+The network will be named "cameo" and its password will be "cameopwd"
 ```
 chmod +x start_hotspot.sh
 sudo start_hotspot.sh
@@ -103,6 +103,6 @@ sudo nmcli connection down Hotspot
 
 ## Usage
 1. After everything is installed, turn the pi on and from another device wait for the "cameo" wifi network to show up.
-2. Once it's up, connect to it using the password "\<oemac\>". The device you're connecting from will tell you the network has no internet access, but that's ok, just confirm you want to stay connected if prompted.
+2. Once it's up, connect to it using the password "cameopwd". The device you're connecting from will tell you the network has no internet access, but that's ok, just confirm you want to stay connected if prompted.
 3. Open up a browser (any browser will do) and connect to http://10.42.0.1:3000/. If everything went as planned you should see the Cameo UI with live feed from your camera.
 4. Point to your favorite subject and snap a picture with the shoot button.
