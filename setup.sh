@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Update the system.
-sudo apt update -y
-sudo apt upgrade -y
+# sudo apt update -y
+# sudo apt upgrade -y
 
 # Install mjpg-streamer dependencies.
 sudo apt install -y gcc g++
 sudo apt install -y pkg-config
 sudo apt install -y libcamera-dev
-sudo apt install -y git cmake libjpeg9-dev
+sudo apt install -y git cmake libjpeg62-turbo-dev
 
 # Install mjpg-streamer.
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer

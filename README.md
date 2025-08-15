@@ -18,7 +18,10 @@ sudo chmod +x ~/Cameo/setup.sh
 
 Run the following commands
 
-#### Update the system
+#### Update the system (optional)
+Only do this if you get some errors along the way.
+
+If that happens, then run these commands and start over.
 ```
 sudo apt update -y
 sudo apt upgrade -y
@@ -29,7 +32,7 @@ sudo apt upgrade -y
 sudo apt install -y gcc g++
 sudo apt install -y pkg-config
 sudo apt install -y libcamera-dev
-sudo apt install -y git cmake libjpeg9-dev
+sudo apt install -y git cmake libjpeg62-turbo-dev
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer
 cd ~/mjpg-streamer/mjpg-streamer-experimental
 make clean distclean
