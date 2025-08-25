@@ -1,53 +1,57 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+NC='\033[0m'
+
 # Update the system.
-# sudo apt update -y
-# sudo apt upgrade -y
+printf "Updating the system"
+sudo apt update -y
+sudo apt upgrade -y
 
 # Install mjpg-streamer dependencies.
-echo "Installing gcc and g++"
+printf "${RED}Installing gcc and g++${NC}"
 sudo apt install -y gcc g++
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed gcc and g++"
+    printf "${RED}Successfully installed gcc and g++${NC}"
 else
-    echo "Error installing gcc and g++"
+    printf "${RED}Error installing gcc and g++${NC}"
     exit 1
 fi
-echo "Installing pkg-config"
+printf "${RED}Installing pkg-config${NC}"
 sudo apt install -y pkg-config
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed pkg-config"
+    printf "${RED}Successfully installed pkg-config${NC}"
 else
-    echo "Error installing pkg-config"
+    printf "${RED}Error installing pkg-config${NC}"
     exit 1
 fi
-echo "Installing libcamera-dev"
+printf "${RED}Installing libcamera-dev${NC}"
 sudo apt install -y libcamera-dev
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed libcamera-dev"
+    printf "${RED}Successfully installed libcamera-dev${NC}"
 else
-    echo "Error installing libcamera-dev"
+    printf "${RED}Error installing libcamera-dev${NC}"
     exit 1
 fi
-echo "Installing git, cmake and libjpeg62-turbo-dev"
+printf "${RED}Installing git, cmake and libjpeg62-turbo-dev${NC}"
 sudo apt install -y git cmake libjpeg62-turbo-dev
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed libjpeg62-turbo-dev"
+    printf "${RED}Successfully installed libjpeg62-turbo-dev${NC}"
 else
-    echo "Error installing libjpeg62-turbo-dev"
+    printf "${RED}Error installing libjpeg62-turbo-dev${NC}"
     exit 1
 fi
 
 # Install mjpg-streamer.
-echo "installing mjpg-streamer"
+printf "${RED}installing mjpg-streamer${NC}"
 git clone https://github.com/ArduCAM/mjpg-streamer.git ~/mjpg-streamer
 cd ~/mjpg-streamer/mjpg-streamer-experimental
 make clean distclean
 make all
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed mjpg-streamer"
+    printf "${RED}Successfully installed mjpg-streamer${NC}"
 else
-    echo "Error installing mjpg-streamer"
+    printf "${RED}Error installing mjpg-streamer${NC}"
     exit 1
 fi
 sudo mkdir /opt/mjpg-streamer
@@ -55,53 +59,53 @@ sudo mv * /opt/mjpg-streamer
 cd
 
 # Install web packages.
-echo "installing apache, nodejs and npm"
+printf "${RED}installing apache, nodejs and npm${NC}"
 sudo apt install -y apache2 nodejs npm
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed apache, nodejs and npm"
+    printf "${RED}Successfully installed apache, nodejs and npm${NC}"
 else
-    echo "Error installing apache, nodejs and npm"
+    printf "${RED}Error installing apache, nodejs and npm${NC}"
     exit 1
 fi
-echo "installing node dependencies"
+printf "${RED}installing node dependencies${NC}"
 sudo npm install express
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed express"
+    printf "${RED}Successfully installed express${NC}"
 else
-    echo "Error installing express"
+    printf "${RED}Error installing express${NC}"
     exit 1
 fi
 sudo npm install socket.io
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed socket.io"
+    printf "${RED}Successfully installed socket.io${NC}"
 else
-    echo "Error installing socket.io"
+    printf "${RED}Error installing socket.io${NC}"
     exit 1
 fi
 sudo npm install coffee-script
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed coffee-script"
+    printf "${RED}Successfully installed coffee-script${NC}"
 else
-    echo "Error installing coffee-script"
+    printf "${RED}Error installing coffee-script${NC}"
     exit 1
 fi
 sudo npm install pi-gpio
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed pi-gpio"
+    printf "${RED}Successfully installed pi-gpio${NC}"
 else
-    echo "Error installing pi-gpio"
+    printf "${RED}Error installing pi-gpio${NC}"
     exit 1
 fi
 sudo npm install pigpio
 if [[ $? -eq 0 ]]; then
-    echo "Successfully installed pigpio"
+    printf "${RED}Successfully installed pigpio${NC}"
 else
-    echo "Error installing pigpio"
+    printf "${RED}Error installing pigpio${NC}"
     exit 1
 fi
 
 # Setup service to run at boot.
-echo "installing services"
+printf "${RED}installing services${NC}"
 sudo chmod +x ~/Cameo/install_services.sh
 ~/Cameo/install_services.sh
-echo "services installed"
+printf "${RED}services installed${NC}"

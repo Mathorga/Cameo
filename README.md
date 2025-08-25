@@ -18,10 +18,7 @@ sudo chmod +x ~/Cameo/setup.sh
 
 Run the following commands
 
-#### Update the system (optional)
-Only do this if you get some errors along the way.
-
-If that happens, then run these commands and start over.
+#### Update the system
 ```
 sudo apt update -y
 sudo apt upgrade -y
